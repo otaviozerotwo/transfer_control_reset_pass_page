@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FaLock, FaRedo } from 'react-icons/fa';
 
 export function ResetPassword() {
   const [token, setToken] = useState('');
@@ -48,33 +49,44 @@ export function ResetPassword() {
   };
 
   return (
-    <div>
-      <h2>Redefinir Senha</h2>
+    <div className="container">
+      <div className="title-container">
+        <div className="icon-container">
+          <FaLock size={24} color="#374151" />
+        </div>
 
-      {status && <p>{status}</p>}
+        <h2 className="title">Redefinir Senha</h2>
+        <h3 className="subtitle">Insira sua nova senha abaixo</h3>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nova senha:</label>
+        {status && <p style={{ textAlign: 'center', color: status.includes('sucesso') ? 'green' : 'red' }}>{status}</p>}
+      </div>
+
+      <form className="form-container" onSubmit={handleSubmit}>
+        <div className="input-container">
+          <label className="label">Nova senha</label>
           <input 
             type="password" 
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             required
+            className="input"
           />
         </div>
         
-        <div>
-          <label>Confirmar nova senha:</label>
+        <div className="input-container">
+          <label className="label">Confirmar nova senha</label>
           <input 
             type="password" 
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
+            className="input"
           />
         </div>
 
-        <button type="submit">Redefinir Senha</button>
+        <button type="submit" className="button">
+          <FaRedo style={{ marginRight: '0.5rem' }} />
+          Redefinir Senha</button>
       </form>
     </div>
   );
